@@ -1,0 +1,337 @@
+
+			----------------SW1-----------------
+
+Switch>
+Switch>
+Switch>ENA
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostn
+Switch(config)#hostname 
+% Incomplete command.
+Switch(config)#hostname S1
+S1(config)#
+S1(config)#
+S1(config)#
+S1(config)#VLAN 10
+S1(config-vlan)#name INVESTIGACION
+S1(config-vlan)#END
+S1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+S1#
+S1#show vlan
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/1, Gig0/2
+10   INVESTIGACION                    active    
+1002 fddi-default                     act/unsup 
+1003 token-ring-default               act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trnet-default                    act/unsup 
+
+VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2
+---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------
+1    enet  100001     1500  -      -      -        -    -        0      0
+10   enet  100010     1500  -      -      -        -    -        0      0
+1002 fddi  101002     1500  -      -      -        -    -        0      0   
+1003 tr    101003     1500  -      -      -        -    -        0      0 
+
+
+MTU.- unidad máxima de transmisión
+
+S1#
+S1#
+S1#ena
+S1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#vlan 20
+S1(config-vlan)#name EXTENSION
+S1(config-vlan)#end
+S1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+S1#
+S1#
+S1#sh vl
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/1, Gig0/2
+10   INVESTIGACION                    active    
+20   EXTENSION                        active    
+1002 fddi-default                     act/unsup 
+1003 token-ring-default               act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trnet-default                    act/unsup 
+
+VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2
+---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------
+1    enet  100001     1500  -      -      -        -    -        0      0
+10   enet  100010     1500  -      -      -        -    -        0      0
+20   enet  100020     1500  -      -      -        -    -        0      0
+ --More-- 
+
+
+dinámica pueda negociar 
+S1#
+S1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#inter fas
+S1(config)#inter fastEthernet 0/1
+S1(config-if)#swit
+S1(config-if)#switchport mode ?
+  access   Set trunking mode to ACCESS unconditionally
+  dynamic  Set trunking mode to dynamically negotiate access or trunk mode
+  trunk    Set trunking mode to TRUNK unconditionally
+S1(config-if)#switchport mode acc
+S1(config-if)#switchport mode access 
+S1(config-if)#swi
+S1(config-if)#switchport ac
+S1(config-if)#switchport access vlan 10
+S1(config-if)#exit
+S1(config)#inter
+S1(config)#interface ran
+S1(config)#interface range fas
+S1(config)#interface range fastEthernet 0/3 - 9
+S1(config-if-range)#
+S1(config-if-range)#
+S1(config-if-range)#swit
+S1(config-if-range)#switchport mode acc
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#swit
+S1(config-if-range)#switchport acc
+S1(config-if-range)#switchport access vlan 10
+S1(config-if-range)#end
+S1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+S1#sh vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/2, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/1, Gig0/2
+10   INVESTIGACION                    active    Fa0/1, Fa0/3, Fa0/4, Fa0/5
+                                                Fa0/6, Fa0/7, Fa0/8, Fa0/9
+20   EXTENSION                        active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+S1#
+
+(revisando la bd de la vlan
+se conoce la )
+para verificar la con
+
+
+S1#
+S1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#inter fa0/2
+S1(config-if)#sw
+S1(config-if)#switchport mode acc
+S1(config-if)#switchport mode access 
+S1(config-if)#swi
+S1(config-if)#switchport ac
+S1(config-if)#switchport access vlan 20
+S1(config-if)#exit
+S1(config)#inter
+S1(config)#interface ran
+S1(config)#interface range fas
+S1(config)#interface range fastEthernet 0/10 - 15
+S1(config-if-range)#
+S1(config-if-range)#swi
+S1(config-if-range)#switchport mode acc
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#swi
+S1(config-if-range)#switchport acc
+S1(config-if-range)#switchport access vlan 20
+S1(config-if-range)#end
+S1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+S1#sh vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/16, Fa0/17, Fa0/18, Fa0/19
+                                                Fa0/20, Fa0/21, Fa0/22, Fa0/23
+                                                Fa0/24, Gig0/1, Gig0/2
+10   INVESTIGACION                    active    Fa0/1, Fa0/3, Fa0/4, Fa0/5
+                                                Fa0/6, Fa0/7, Fa0/8, Fa0/9
+20   EXTENSION                        active    Fa0/2, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+S1#
+
+¿Cuando se utiliza las etiquetas?
+cuando por un canal tienen que pasar 
+
+ip add 172.16.10.1 255.255.255.0
+
+
+
+TRONKALL
+
+S2>
+S2>
+S2>ena
+S2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+S2(config)#inter
+S2(config)#interface fa0/24
+S2(config-if)#swit
+S2(config-if)#switchport mode tru
+S2(config-if)#switchport mode trunk 
+S2(config-if)#end
+S2#
+%SYS-5-CONFIG_I: Configured from console by console
+
+S2#sh runn
+S2#sh running-config (para ver el modo TRUNK DEL PUERTO 24)
+Building configuration...
+
+Current configuration : 1827 bytes
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname S2
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+interface FastEthernet0/1
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/2
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/3
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/4
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/5
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/6
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/7
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/8
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/9
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/10
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/11
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/12
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/13
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/14
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/15
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+ switchport mode trunk
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+
+S2#sh inter
+S2#sh interfaces fa0/24 sw
+S2#sh interfaces fa0/24 switchport (para ver el modo TRUNK DEL PUERTO 24)
+Name: Fa0/24
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk private VLANs: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+Protected: false
