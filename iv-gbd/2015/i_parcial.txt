@@ -1,0 +1,12 @@
+1.-SID:fiis
+bdglobal:sistemas
+dbca
+select instance_name from V$instance;-->Fiis
+select name from V$database;-->sistemas
+2.- conectar al esquema hr  y a su instancia fiis desde la consola del cliente 
+sqlplus hr/hr @ IPservidor:puerto/fiis 
+
+3.-cambiar el tamaño del shared pool a 20 mb
+alter system set shared_pool_size=20
+
+4.- crear un usuario "pool" que pueda tener acceso de lectura y escritura a la tabla  regions del esquema
